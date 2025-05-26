@@ -29,14 +29,15 @@ pub fn generateannotate(pathfile: &str) -> Result<String, Box<dyn Error>> {
                 let geneid_tuple = ensembline[2].split(" ").collect::<Vec<_>>();
                 let ensemblpush: (String, String) = (
                     ensembl_tuple[1].replace("\"", "").to_string(),
-                    geneid_tuple[2].to_string().replace("\"", ""),
+                    geneid_tuple[1].to_string().replace("\"", ""),
                 );
                 ensemblid.push(ensemblpush);
             }
         }
         let mut filewrite = File::create(".annotation").expect("file not present");
         for i in ensemblid.iter() {
-            writeln!(filewrite, "{},{}", i.0.to_string(), i.1.to_string()).expect("file not present");
+            writeln!(filewrite, "{},{}", i.0.to_string(), i.1.to_string())
+                .expect("file not present");
         }
     }
     Ok("The file has been converted".to_string())
