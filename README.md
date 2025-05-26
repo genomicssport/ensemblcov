@@ -3,7 +3,7 @@
 ![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/logo.png)
 
 ```
-human genomics utilities from annotation to differential expresssion.
+human genomics utilities.
        ************************************************
       Gaurav Sablok, IBCH, PAN, Poznan, Poland,
       https://portal.ichb.pl/laboratory-of-genomics/.
@@ -15,7 +15,7 @@ human genomics utilities from annotation to differential expresssion.
 Usage: ensemblcov <COMMAND>
 
 Commands:
-  gtf-annotate-generate   gtf file for annotation
+  gtf-annotate-generate   gtf file for annotation, run this one time for generating a dotenv file
   countconvert            id convert from counts file
   differentialexpression  id convert from differential expression
   help                    Print this message or the help of the given subcommand(s)

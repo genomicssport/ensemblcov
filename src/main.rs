@@ -2,15 +2,12 @@ mod annotate;
 mod args;
 mod counts;
 mod differential;
+use crate::annotate::generateannotate;
 use crate::args::CommandParse;
 use crate::args::Commands;
-use clap::Parser;
-use std::fs::File;
-use std::io::Write;
-use std::io::{BufRead, BufReader};
 use crate::counts::convertcounts;
-use crate::annotate::generateannotate;
 use crate::differential::differentialconvert;
+use clap::Parser;
 
 /*
  Author Gaurav Sablok

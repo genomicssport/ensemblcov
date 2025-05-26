@@ -20,7 +20,7 @@ pub struct CommandParse {
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
-    /// gtf file for annotation
+    /// gtf file for annotation, run this one time for generating a dotenv file.
     GTFAnnotateGenerate {
         /// path to the gtf file
         gtf: String,
