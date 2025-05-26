@@ -28,13 +28,13 @@ pub fn generateannotate(pathfile: &str) -> Result<String, Box<dyn Error>> {
                     .collect::<Vec<String>>();
                 let ensembl_tuple = ensembline[0].split(" ").collect::<Vec<_>>();
                 let geneid_tuple = ensembline[2].split(" ").collect::<Vec<_>>();
-                let ensemblpush: (String, String) = (ensembl_tuple[1].to_string(), geneid_tuple[1].to_string());
+                let ensemblpush: (String, String) = (ensembl_tuple[1].replace("\"","").to_string(), geneid_tuple[2].to_string().replace("\"", ""));
                 ensemblid.push(ensemblpush);
             }
         }
-     let mut filewrite = File::create("idconversion").expect("file not present");
+     let mut filewrite = File::create(".idconversion").expect("file not present");
      for i in ensemblid.iter(){
-         writeln!(filewrite,"{},{}",i.0, i.1);
+         writeln!(filewrite,"{},{}",i.0.to_string(), i.1.to_string());
      }
     }
     Ok("The file has been converted".to_string())
