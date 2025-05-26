@@ -31,6 +31,13 @@ Options:
 - ensemblcov gtf-annotate-generate  sample.gtf
 ```
 
+```
+ensemblcov  autogenerate yes
+ensemblcov countconvert ./sample-files/sample.matrix
+ensemblcov differentialexpression ./sample-files/differntialresults.text
+ensemblcov  gtf-annotate-generate ./sample-files/sample.gtf
+```
+
 - genomic utilities for human genomics.
 - Acknowledgements: MOSAIC platform, developed as part of the ECBiG-MOSAIC project (POIR.04.02.00-00-D017/20), co-financed by the European Regional Development Fund (ERDF) under the Smart Growth Operational Programme 2014-2020, Measure 4.2 for the development of modern research infrastructure in the science sector.
 - Project PI and Informal queries: Prof. Luiza Handschuh: luizahan@ibch.poznan.pl.

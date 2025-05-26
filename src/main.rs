@@ -1,10 +1,12 @@
 mod annotate;
 mod args;
+mod autogenerate;
 mod counts;
 mod differential;
 use crate::annotate::generateannotate;
 use crate::args::CommandParse;
 use crate::args::Commands;
+use crate::autogenerate::generatecovid;
 use crate::counts::convertcounts;
 use crate::differential::differentialconvert;
 use clap::Parser;
@@ -20,6 +22,13 @@ use clap::Parser;
 fn main() {
     let argparse = CommandParse::parse();
     match &argparse.command {
+        Commands::AutoGenerate { generate } => {
+            let command = generatecovid(generate).unwrap();
+            println!(
+                "The gene conversion for the entire geneome has been written:{}",
+                command
+            );
+        }
         Commands::GTFAnnotateGenerate { gtf } => {
             let command = generateannotate(gtf).unwrap();
             println!("The command has been completed:{}", command);
