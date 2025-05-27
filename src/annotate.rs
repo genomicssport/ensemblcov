@@ -11,7 +11,7 @@ use std::io::{BufRead, BufReader};
  Date: 2025-5-26
 */
 
-pub fn generateannotate(pathfile: &str) -> Result<String, Box<dyn Error>> {
+pub fn generateannotations(pathfile: &str) -> Result<String, Box<dyn Error>> {
     let fileopen = File::open(pathfile).expect("file not present");
     let fileread = BufReader::new(fileopen);
     let mut ensemblid: Vec<(String, String)> = Vec::new();

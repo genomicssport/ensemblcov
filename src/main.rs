@@ -3,18 +3,20 @@ mod args;
 mod autogenerate;
 mod counts;
 mod differential;
-mod parallelautogenerate;
 mod exon;
 mod extract;
-use crate::annotate::generateannotate;
+mod parallelautogenerate;
+use crate::annotate::generateannotations;
 use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::autogenerate::generatecovid;
 use crate::counts::convertcounts;
 use crate::differential::differentialconvert;
+use crate::parallelautogenerate::threadedautogenerate;
 use crate::exon::exonunwrap;
 use crate::extract::geneunwrap;
 use clap::Parser;
+use std::thread;
 
 /*
  Author Gaurav Sablok
@@ -27,6 +29,10 @@ use clap::Parser;
 fn main() {
     let argparse = CommandParse::parse();
     match &argparse.command {
+        Commands::ThreadedAutgenerate { generate } => {
+            let command = threadedautogenerate(generate).unwrap();
+            println!("The command has been finished:{}", command);
+        }
         Commands::AutoGenerate { generate } => {
             let command = generatecovid(generate).unwrap();
             println!(
@@ -35,7 +41,7 @@ fn main() {
             );
         }
         Commands::GTFAnnotateGenerate { gtf } => {
-            let command = generateannotate(gtf).unwrap();
+            let command = generateannotations(gtf).unwrap();
             println!("The command has been completed:{}", command);
         }
         Commands::Countconvert { counts } => {

@@ -2,6 +2,7 @@ use std::error::Error;
 use std::fs::File;
 use std::io::Write;
 use std::io::{BufRead, BufReader};
+use std::thread;
 
 /*
  Author Gaurav Sablok
@@ -50,7 +51,6 @@ pub fn differentialconvert(pathfile: &str) -> Result<String, Box<dyn Error>> {
             }
         }
     }
-
 
     let mut fileconverted = File::create("diffconverted.txt").expect("file not present");
     for i in finalcount_compare.iter() {

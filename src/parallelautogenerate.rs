@@ -1,8 +1,6 @@
-use rayon::iter::ParallelIterator;
-use rayon::iter::{IntoParallelIterator, ParallelBridge};
-use rayon::prelude::*;
 use std::error::Error;
 use std::fs::File;
+use std::fs;
 use std::io::Write;
 use std::io::{BufRead, BufReader};
 use std::process::Command;
@@ -16,23 +14,30 @@ use std::thread;
  Date: 2025-5-26
 */
 
-/*
-pub fn parallelgeneratecovid(generate: &str) -> Result<String, Box<dyn Error>> {
+pub fn threadedautogenerate(generate: &str) -> Result<String, Box<dyn Error>> {
     if generate == "yes" {
-    let _commandexec = Command::new("wget").arg("https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/gencode.v48.chr_patch_hapl_scaff.annotation.gtf.gz").output().expect("command failed");
-    let _unzipcommand = Command::new("gunzip").arg("gencode.v48.chr_patch_hapl_scaff.annotation.gtf.gz").output().expect("command failed");
-    let fileopen = File::open("gencode.v48.chr_patch_hapl_scaff.annotation.gtf").expect("file not present");
-    let fileread = BufReader::new(fileopen);
-    let mut ensemblid: Vec<(String, String)> = fileread.lines().
-        filter_map(|linehold:Result<String, _>|linehold.ok()).
-        into_par_iter().map(|x| linecollect(&x)).collect::<Vec<(String, String)>>();
-}
+        let _commandexec = Command::new("wget").arg("https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/gencode.v48.chr_patch_hapl_scaff.annotation.gtf.gz")
+        .output()
+        .expect("command failed");
+        let _unzipcommand = Command::new("gunzip")
+            .arg("gencode.v48.chr_patch_hapl_scaff.annotation.gtf.gz")
+            .output()
+            .expect("command failed");
+        let mut collectfinaliter = Vec::new();
+        thread::spawn(move || {for i in 1..10 {
+            let collectvar = linecollect("gencode.v48.chr_patch_hapl_scaff.annotation.gtf");
+            collectfinaliter.push(collectvar);
+        }});
+    };
     Ok("The file has been converted".to_string())
-    }
+}
 
-pub fn linecollect(line: &str) -> Vec<(String, String)>{
-    let gtfline = line.clone();
-    let mut ensemblpushvec:Vec<(String, String)> = Vec::new();
+pub fn linecollect(pathfile: &str) -> Vec<(String, String)> {
+    let gtfread = File::open(pathfile).expect("file not present");
+    let gtfline = BufReader::new(gtfread);
+    let mut ensemblpushvec: Vec<(String, String)> = Vec::new();
+    for i in gtfline.lines(){
+        let gtfline = i.expect("Line not present");
     if !gtfline.starts_with("#") {
         let ensemblinside: Vec<_> = gtfline.split("\t").collect::<Vec<_>>();
         if ensemblinside[2].to_string() == "gene" {
@@ -49,6 +54,6 @@ pub fn linecollect(line: &str) -> Vec<(String, String)>{
             ensemblpushvec.push(ensemblpush);
         }
     }
+    }
     ensemblpushvec
 }
-*/
