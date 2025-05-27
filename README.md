@@ -8,7 +8,7 @@
 ![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/logo.png)
 
 ```
-human genomics utilities.
+hhuman genomics utilities.
        ************************************************
       Gaurav Sablok, IBCH, PAN, Poznan, Poland,
       https://portal.ichb.pl/laboratory-of-genomics/.

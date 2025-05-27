@@ -2,7 +2,6 @@ use std::error::Error;
 use std::fs::File;
 use std::io::Write;
 use std::io::{BufRead, BufReader};
-use std::thread;
 
 /*
  Author Gaurav Sablok

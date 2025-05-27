@@ -20,11 +20,6 @@ pub struct CommandParse {
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
-    /// Parallel autogenerate
-    ThreadedAutgenerate {
-        /// threaded generate the ensembl
-        generate: String,
-    },
     /// autogenerate the ensemble gene conversion
     AutoGenerate { generate: String },
     /// gtf file for annotation
