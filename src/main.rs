@@ -3,12 +3,17 @@ mod args;
 mod autogenerate;
 mod counts;
 mod differential;
+mod parallelautogenerate;
+mod exon;
+mod extract;
 use crate::annotate::generateannotate;
 use crate::args::CommandParse;
 use crate::args::Commands;
 use crate::autogenerate::generatecovid;
 use crate::counts::convertcounts;
 use crate::differential::differentialconvert;
+use crate::exon::exonunwrap;
+use crate::extract::geneunwrap;
 use clap::Parser;
 
 /*
@@ -42,6 +47,14 @@ fn main() {
         } => {
             let command = differentialconvert(differntialexpression).unwrap();
             println!("The file has been converted:{}", command);
+        }
+        Commands::ExonEnsembl { exonensembl } => {
+            let command = exonunwrap(exonensembl).unwrap();
+            println!("The file has been written:{}", command);
+        }
+        Commands::GeneEnsembl { ensemblid } => {
+            let command = geneunwrap(ensemblid).unwrap();
+            println!("The file has been written:{}", command);
         }
     }
 }

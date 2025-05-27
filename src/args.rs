@@ -37,4 +37,14 @@ pub enum Commands {
         /// path to the differential expression
         differntialexpression: String,
     },
+    /// gene list extraction from ensembl
+    GeneEnsembl {
+        /// path to the ensembl ids
+        ensemblid: String,
+    },
+    /// specific exons of the ensembl ids
+    ExonEnsembl {
+        /// path to the ensembl ids
+        exonensembl: String,
+    }
 }
