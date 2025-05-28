@@ -5,7 +5,7 @@
 ![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/logo.png)
 
 ```
-hhuman genomics utilities.
+human genomics utilities.
        ************************************************
       Gaurav Sablok, IBCH, PAN, Poznan, Poland,
       https://portal.ichb.pl/laboratory-of-genomics/.
@@ -17,6 +17,7 @@ hhuman genomics utilities.
 Usage: ensemblcov <COMMAND>
 
 Commands:
+  threaded-auto           threaded version of ensembl auto gene conversion
   auto-generate           autogenerate the ensemble gene conversion
   gtf-annotate-generate   gtf file for annotation
   countconvert            id convert from counts file

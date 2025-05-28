@@ -20,8 +20,16 @@ pub struct CommandParse {
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
+    /// threaded version of ensembl auto gene conversion
+    ThreadedAuto {
+        /// provide yes as argument
+        generate: String,
+    },
     /// autogenerate the ensemble gene conversion
-    AutoGenerate { generate: String },
+    AutoGenerate {
+        /// provide yes as argument
+        generate: String
+    },
     /// gtf file for annotation
     GTFAnnotateGenerate {
         /// path to the gtf file

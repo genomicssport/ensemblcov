@@ -5,6 +5,7 @@ mod counts;
 mod differential;
 mod exon;
 mod extract;
+mod threaded;
 use crate::annotate::generateannotations;
 use crate::args::CommandParse;
 use crate::args::Commands;
@@ -13,6 +14,7 @@ use crate::counts::convertcounts;
 use crate::differential::differentialconvert;
 use crate::exon::exonunwrap;
 use crate::extract::geneunwrap;
+use crate::threaded::threadedautogenerate;
 use clap::Parser;
 
 /*
@@ -26,6 +28,10 @@ use clap::Parser;
 fn main() {
     let argparse = CommandParse::parse();
     match &argparse.command {
+        Commands::ThreadedAuto { generate } => {
+            let command = threadedautogenerate(generate).unwrap();
+            println!("The command has finished:{}", command);
+        }
         Commands::AutoGenerate { generate } => {
             let command = generatecovid(generate).unwrap();
             println!(
