@@ -3,6 +3,7 @@ use std::fs::File;
 use std::io::Write;
 use std::io::{BufRead, BufReader};
 use std::process::Command;
+use std::thread;
 
 /*
  Author Gaurav Sablok
@@ -14,11 +15,17 @@ use std::process::Command;
 
 pub fn generatecovid(generate: &str) -> Result<String, Box<dyn Error>> {
     if generate == "yes" {
+        thread::scope(|scope| {
+            scope.spawn( || {
         let _commandexec = Command::new("wget").arg("https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/gencode.v48.chr_patch_hapl_scaff.annotation.gtf.gz").output().expect("command failed");
         let _unzipcommand = Command::new("gunzip")
             .arg("gencode.v48.chr_patch_hapl_scaff.annotation.gtf.gz")
             .output()
             .expect("command failed");
+            });
+        });
+        thread::scope(|scope| {
+            scope.spawn( || {
         let fileopen = File::open("gencode.v48.chr_patch_hapl_scaff.annotation.gtf")
             .expect("file not present");
         let fileread = BufReader::new(fileopen);
@@ -47,6 +54,8 @@ pub fn generatecovid(generate: &str) -> Result<String, Box<dyn Error>> {
                     .expect("file not present");
             }
         }
+    });
+        });
     }
     Ok("The file has been converted".to_string())
 }

@@ -28,7 +28,7 @@ pub enum Commands {
     /// autogenerate the ensemble gene conversion
     AutoGenerate {
         /// provide yes as argument
-        generate: String
+        generate: String,
     },
     /// gtf file for annotation
     GTFAnnotateGenerate {

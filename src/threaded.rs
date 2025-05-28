@@ -21,9 +21,10 @@ pub fn threadedautogenerate(generate: &str) -> Result<String, Box<dyn Error>> {
             .arg("gencode.v48.chr_patch_hapl_scaff.annotation.gtf.gz")
             .output()
             .expect("command failed");
-        thread::scope(|scope | {
-            scope.spawn( || {
-                let gtfread = File::open("gencode.v48.chr_patch_hapl_scaff.annotation.gtf").expect("file not present");
+        thread::scope(|scope| {
+            scope.spawn(|| {
+                let gtfread = File::open("gencode.v48.chr_patch_hapl_scaff.annotation.gtf")
+                    .expect("file not present");
                 let gtfline = BufReader::new(gtfread);
                 let mut ensemblpushvec: Vec<(String, String)> = Vec::new();
                 for i in gtfline.lines() {
@@ -48,12 +49,11 @@ pub fn threadedautogenerate(generate: &str) -> Result<String, Box<dyn Error>> {
                 let mut filewrite = File::create("ensembl-id.txt").expect("the file not present");
                 writeln!(filewrite, "{}\t{}", "ensemblid", "geneid").expect("the file not present");
                 for val in ensemblpushvec.iter() {
-                        writeln!(filewrite, "{}\t{}", val.0, val.1).expect("the file not present");
-                };
-        });
+                    writeln!(filewrite, "{}\t{}", val.0, val.1).expect("the file not present");
+                }
             });
+        });
     }
-
 
     Ok("The file has been converted".to_string())
 }

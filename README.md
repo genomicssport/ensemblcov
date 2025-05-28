@@ -1,6 +1,6 @@
 # ensemblcov
 
-- Complete set of multi-threaded genomics utilies for ensembl and differential expression matrix.
+- Complete set of multi-threaded genomics utilities for ensembl and differential expression matrix.
 
 ![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/logo.png)
 
@@ -42,7 +42,10 @@ ensemblcov  autogenerate yes
 ensemblcov countconvert ./sample-files/sample.matrix
 ensemblcov differentialexpression ./sample-files/differntialresults.text
 ensemblcov  gtf-annotate-generate ./sample-files/sample.gtf
+ensemblcov gene-ensembl id.txt
+ensemblcov exon-ensembl ./sample-files/idexon.txt
 ```
+
 - Acknowledgements: MOSAIC platform, developed as part of the ECBiG-MOSAIC project (POIR.04.02.00-00-D017/20), co-financed by the European Regional Development Fund (ERDF) under the Smart Growth Operational Programme 2014-2020, Measure 4.2 for the development of modern research infrastructure in the science sector.
 - Project PI and Informal queries: Prof. Luiza Handschuh: luizahan@ibch.poznan.pl.
 - Code related queries: Dr. Gaurav Sablok: gsablok@ibch.poznan.pl.
