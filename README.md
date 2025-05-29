@@ -31,11 +31,7 @@ Options:
   -V, --version  Print version
 ```
 
-- run this one time to generate annotation and it will store the converted annotation in a dotenv file.
-
-```
-- ensemblcov gtf-annotate-generate  sample.gtf
-```
+- before running the ensemlcov additional options, run one time,either autogenerate or threaded-generate to link the ensemblid to geneid.
 
 ```
 ensemblcov  autogenerate yes
