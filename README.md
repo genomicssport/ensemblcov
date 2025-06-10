@@ -35,6 +35,7 @@ Options:
 
 ```
 ensemblcov  autogenerate yes
+ensemblcov threaded-auto yes
 ensemblcov countconvert ./sample-files/sample.matrix
 ensemblcov differentialexpression ./sample-files/differntialresults.text
 ensemblcov  gtf-annotate-generate ./sample-files/sample.gtf

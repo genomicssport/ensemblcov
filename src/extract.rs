@@ -2,9 +2,9 @@ use std::error::Error;
 use std::fs::File;
 use std::io::Write;
 use std::io::{BufRead, BufReader};
+use std::path::Path;
 use std::process::Command;
 use std::thread;
-
 
 /*
  Author Gaurav Sablok
@@ -21,12 +21,15 @@ pub struct FastaHuman {
     entirename: String,
 }
 
-static ADDRESS1:&str = "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/gencode.v48.transcripts.fa.gz";
-static ADDRESS2:&str = "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/gencode.v48.pc_transcripts.fa.gz";
+static ADDRESS1: &str = "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/gencode.v48.transcripts.fa.gz";
+static ADDRESS2: &str = "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/gencode.v48.pc_transcripts.fa.gz";
 
 pub fn geneunwrap(ensemblid: &str) -> Result<String, Box<dyn Error>> {
-    thread::scope(|scope| {
-        scope.spawn(|| {
+    let pathfile1 = Path::new(ADDRESS1);
+    let pathfile2 = Path::new(ADDRESS2);
+    if !pathfile1.exists() && !pathfile2.exists() {
+        thread::scope(|scope| {
+            scope.spawn(|| {
                 let _ = Command::new("wget")
                     .arg(ADDRESS1)
                     .output()
@@ -43,7 +46,10 @@ pub fn geneunwrap(ensemblid: &str) -> Result<String, Box<dyn Error>> {
                     .arg("gencode.v48.transcripts.fa.gz")
                     .output()
                     .expect("failed command or file not found");
-                let _ = Command::new("sh").arg("./src/awk.sh").output().expect("commandfailed");
+                let _ = Command::new("sh")
+                    .arg("./src/awk.sh")
+                    .output()
+                    .expect("commandfailed");
                 let mut humanindex: Vec<FastaHuman> = Vec::new();
                 let mut humanname: Vec<_> = Vec::new();
                 let mut humanseq: Vec<_> = Vec::new();
@@ -96,7 +102,8 @@ pub fn geneunwrap(ensemblid: &str) -> Result<String, Box<dyn Error>> {
                     writeln!(finalfile, ">{}\n{}", i.entirename, i.sequence)
                         .expect("line not found");
                 }
+            });
         });
-    });
+    }
     Ok("The gene list for the following ids have been written".to_string())
 }

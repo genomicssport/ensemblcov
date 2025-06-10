@@ -2,8 +2,10 @@ use std::error::Error;
 use std::fs::File;
 use std::io::Write;
 use std::io::{BufRead, BufReader};
+use std::path::Path;
 use std::process::Command;
 use std::thread;
+
 /*
  Author Gaurav Sablok
  Instytut Chemii Bioorganicznej
@@ -12,8 +14,11 @@ use std::thread;
  Date: 2025-5-26
 */
 
+static ADDRESS: &str = "gencode.v48.chr_patch_hapl_scaff.annotation.gtf";
+
 pub fn threadedautogenerate(generate: &str) -> Result<String, Box<dyn Error>> {
-    if generate == "yes" {
+    let pathfile = Path::new(ADDRESS);
+    if !pathfile.exists() && generate == "yes" {
         let _commandexec = Command::new("wget").arg("https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/gencode.v48.chr_patch_hapl_scaff.annotation.gtf.gz")
         .output()
         .expect("command failed");
@@ -54,6 +59,5 @@ pub fn threadedautogenerate(generate: &str) -> Result<String, Box<dyn Error>> {
             });
         });
     }
-
     Ok("The file has been converted".to_string())
 }
