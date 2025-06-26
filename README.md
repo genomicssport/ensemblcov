@@ -1,5 +1,7 @@
 # ensemblcov
 
+<img src="https://github.com/IBCHgenomic/ensemblcov/blob/main/ensemblcov.png" width="350" />
+
 - Complete set of multi-threaded genomics utilities for ensembl and differential expression matrix.
 
 ![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/logo.png)
