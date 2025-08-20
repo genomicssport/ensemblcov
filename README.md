@@ -1,10 +1,6 @@
 # ensemblcov
 
-<img src="https://github.com/IBCHgenomic/ensemblcov/blob/main/ensemblcov.png" width="350" />
-
 - Complete set of multi-threaded genomics utilities for ensembl and differential expression matrix.
-
-![](https://github.com/IBCHgenomic/eVaiutilities/blob/main/logo.png)
 
 ```
 human genomics utilities.
@@ -58,4 +54,8 @@ cargo xwin build --target x86_64-pc-windows-msvc
 - Project PI and Informal queries: Prof. Luiza Handschuh: luizahan@ibch.poznan.pl.
 - Code related queries: Dr. Gaurav Sablok: gsablok@ibch.poznan.pl.
 
-Gaurav Sablok Instytut Chemii Bioorganicznej Polskiej Akademii Nauk ul. Noskowskiego 12/14 | 61-704, Poznań Poland
+Gaurav Sablok \
+Instytut Chemii Bioorganicznej \
+Polskiej Akademii Nauk \
+ul. Noskowskiego 12/14 | 61-704, Poznań \
+Poland
