@@ -16,6 +16,7 @@ use crate::exon::exonunwrap;
 use crate::extract::geneunwrap;
 use crate::threaded::threadedautogenerate;
 use clap::Parser;
+use figlet_rs::FIGfont;
 
 /*
  Author Gaurav Sablok
@@ -26,6 +27,10 @@ use clap::Parser;
 */
 
 fn main() {
+    let standard_font = FIGfont::standard().unwrap();
+    let figure = standard_font.convert("ensemblcov");
+    assert!(figure.is_some());
+    println!("{}", figure.unwrap());
     let argparse = CommandParse::parse();
     match &argparse.command {
         Commands::ThreadedAuto { generate } => {

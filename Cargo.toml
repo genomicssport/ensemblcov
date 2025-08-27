@@ -1,6 +1,6 @@
 [package]
 name = "ensemblcov"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
@@ -11,3 +11,4 @@ repository = "https://github.com/IBCHgenomic/ensemblcov"
 
 [dependencies]
 clap = { version = "4.5.38", features = ["derive"] }
+figlet-rs = "0.1.5"
